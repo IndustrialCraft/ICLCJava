@@ -11,14 +11,18 @@ public class TypedVariable {
     boolean isStatic;
     boolean mutable;
     EVisibility visibility;
-    ClassVariable ast;
+
+    int internalName;
     public TypedVariable(ClassVariable var, Compiler compiler, ImportList imports) {
-        this.ast = var;
         this.type = new TypedType(compiler, imports, var.getType());
         this.name = var.getName();
         this.isStatic = var.isStaticVar();
         this.mutable = var.isMutable();
         this.visibility = var.getVisibility();
-    }
 
+        this.internalName = compiler.getInternalNameAssigner().getNextVariableID();
+    }
+    public int internalName(){
+        return internalName;
+    }
 }

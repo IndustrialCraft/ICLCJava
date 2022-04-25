@@ -14,7 +14,11 @@ public class TypedMethod {
     boolean thisMutable;
     boolean isStatic;
     EVisibility visibility;
-    public TypedMethod(ClassMethod ast, ImportList importList, Compiler compiler) {
+    TypedClass parent;
+
+    int internalName;
+    public TypedMethod(ClassMethod ast, ImportList importList, Compiler compiler, TypedClass parent) {
+        this.parent = parent;
         this.ast = ast;
         this.visibility = ast.getVisibility();
         this.returnType = new TypedType(compiler, importList, ast.getType());
@@ -22,6 +26,16 @@ public class TypedMethod {
         this.thisMutable = ast.isThisMutable();
         this.isStatic = ast.isStaticMethod();
         this.parameters = Arrays.stream(ast.getParameters()).map(parameter -> parameter.typed(compiler, importList)).toArray(Parameter[]::new);
+
+        this.internalName = compiler.getInternalNameAssigner().getNextMethodID();
+    }
+
+    public void compileCode(Compiler compiler, ImportList imports){
+
+    }
+
+    public int internalName(){
+        return internalName;
     }
 
     public static class Parameter{

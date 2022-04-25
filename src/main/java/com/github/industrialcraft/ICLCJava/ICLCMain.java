@@ -13,9 +13,9 @@ import java.util.Collections;
 public class ICLCMain {
     public static void main(String args[]){
         Compiler compiler = new Compiler();
-        compiler.addClass(new TypedClass("void", "", Collections.emptyList(), Collections.emptyList()));
-        compiler.addClass(new TypedClass("int", "", Collections.emptyList(), Collections.emptyList()));
-        compiler.addClass(new TypedClass("bool", "", Collections.emptyList(), Collections.emptyList()));
+        compiler.addClass(new TypedClass("void", "", Collections.emptyList(), Collections.emptyList(), compiler));
+        compiler.addClass(new TypedClass("int", "", Collections.emptyList(), Collections.emptyList(), compiler));
+        compiler.addClass(new TypedClass("bool", "", Collections.emptyList(), Collections.emptyList(), compiler));
 
         compiler.addSource(new File("Main.icl"));
 
