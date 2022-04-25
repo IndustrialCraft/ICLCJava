@@ -30,10 +30,10 @@ public class TypedClass {
         this.methods = tree.getClassMethods().stream().map(method -> new TypedMethod(method, imports, compiler)).toList();
         this.variables = tree.getClassVariables().stream().map(method -> new TypedVariable(method, compiler, imports)).toList();
     }
-    public ImportList obtainImports(){
+    public ImportList obtainImports(Compiler compiler){
         if(tree == null)
-            return new ImportList();
-        return new ImportList(tree.getImports().stream().map(parseImport -> parseImport.getImportStr()).toList());
+            return new ImportList(compiler);
+        return new ImportList(tree.getImports().stream().map(parseImport -> parseImport.getImportStr()).toList(), compiler);
     }
     public String getFullName(){
         return classPackage + (classPackage.isEmpty()?"":"::") + name;

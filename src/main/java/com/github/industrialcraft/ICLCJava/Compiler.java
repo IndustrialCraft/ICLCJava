@@ -33,7 +33,7 @@ public class Compiler {
     }
     public void make(){
         for(TypedClass clazz : sources.values()){
-            clazz.parseMembers(clazz.obtainImports(), this);
+            clazz.parseMembers(clazz.obtainImports(this), this);
         }
     }
     public TypedClass byFullName(String fullName){
