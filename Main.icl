@@ -1,5 +1,7 @@
 package com::github::industrialcraft::icltest;
 
+import ahoj::ako::sa::mas;
+
 #!extends(Parent1)
 #!implements(Parent2)
 int i;

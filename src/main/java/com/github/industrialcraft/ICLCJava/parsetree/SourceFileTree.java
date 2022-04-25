@@ -9,10 +9,12 @@ public class SourceFileTree {
     ArrayList<Modificator> classModificators;
     ArrayList<ClassVariable> classVariables;
     ArrayList<ClassMethod> classMethods;
+    ArrayList<ParseImport> imports;
     public SourceFileTree(IclParser.SourceFileContext context){
         this.classModificators = new ArrayList<>();
         this.classVariables = new ArrayList<>();
         this.classMethods = new ArrayList<>();
+        this.imports = new ArrayList<>();
 
         this.packageName = context.package_().name_dcol().getText();
 
@@ -25,8 +27,23 @@ public class SourceFileTree {
         for(IclParser.Method_Context ctx: context.method_()){
             classMethods.add(new ClassMethod(ctx));
         }
+        for(IclParser.Import_Context ctx : context.import_()){
+            imports.add(new ParseImport(ctx));
+        }
     }
     public String getPackageName() {
         return packageName;
+    }
+    public ArrayList<Modificator> getClassModificators() {
+        return classModificators;
+    }
+    public ArrayList<ClassVariable> getClassVariables() {
+        return classVariables;
+    }
+    public ArrayList<ClassMethod> getClassMethods() {
+        return classMethods;
+    }
+    public ArrayList<ParseImport> getImports() {
+        return imports;
     }
 }

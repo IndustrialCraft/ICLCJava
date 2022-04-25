@@ -28,6 +28,14 @@ public class Compiler {
         TypedClass typedClass = new TypedClass(className, tree);
         sources.put(typedClass.getFullName(), typedClass);
     }
+    public void addClass(TypedClass typedClass){
+        sources.put(typedClass.getFullName(), typedClass);
+    }
+    public void make(){
+        for(TypedClass clazz : sources.values()){
+            clazz.parseMembers(clazz.obtainImports(), this);
+        }
+    }
     public TypedClass byFullName(String fullName){
         return sources.get(fullName);
     }

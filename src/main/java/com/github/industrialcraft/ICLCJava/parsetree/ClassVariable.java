@@ -15,4 +15,19 @@ public class ClassVariable {
         this.mutable = ctx.HASH() != null;
         this.visibility = EVisibility.fromCTX(ctx.visibility());
     }
+    public VarType getType() {
+        return type;
+    }
+    public String getName() {
+        return name;
+    }
+    public EVisibility getVisibility() {
+        return visibility;
+    }
+    public boolean isStaticVar() {
+        return staticVar;
+    }
+    public boolean isMutable() {
+        return mutable;
+    }
 }
